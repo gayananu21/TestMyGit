@@ -1,5 +1,9 @@
+/* eslint-disable no-useless-constructor */
+/* eslint-disable jsx-a11y/alt-text */
 import React, { Component } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { Link } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 
@@ -11,7 +15,7 @@ export default class StudentTableRow extends Component {
     }
 
     
-
+    
  
 
     

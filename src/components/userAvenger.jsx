@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {Link} from "react-router-dom"
 import axios from "axios";
 
-class Avenger extends Component {
+class AvengerUser extends Component {
 
     state = {
        
@@ -19,11 +19,6 @@ class Avenger extends Component {
     }
 
 
-    
-
-
-
-   
     render() {
      
       
@@ -44,13 +39,7 @@ class Avenger extends Component {
     >
         Like <span className="badge bg-dark">{this.props.avenger.likeCount}</span>
     </button>{" "}
-    <button
-    className="btn btn-danger"
-    onClick= {this.props.onDelete}
-
-    >
-        Delete
-</button>
+   
 <br/>
 <br/>
 
@@ -59,13 +48,7 @@ class Avenger extends Component {
                         <button className="btn btn-warning">Show more...</button>
 </Link><br/><br/>
 
-<Link className="edit-link" to={"/edit/"+ this.props.avenger.id}>
-                        <button className="btn btn-link">Edit</button>
-                    </Link>
-
-       
-        <button className="btn btn-light" onClick={this.props.onCurrency} >Currency:{}</button>
-                    
+           
   </div>
 </div>
 
@@ -75,4 +58,4 @@ class Avenger extends Component {
     }
 }
 
-export default Avenger;
+export default AvengerUser;

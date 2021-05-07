@@ -14,11 +14,11 @@ export default class AvengerDetail extends Component {
     // State
     this.state = {
       name: '',
-      birthName: '',
-      likeCount: '',
+      description: '',
+      price: '',
       imgUrl: '',
-      deceased:'',
-      movies:[],
+      isAvailable:'',
+      category:[],
       userId:""
 
 
@@ -28,15 +28,15 @@ export default class AvengerDetail extends Component {
 
  async componentDidMount() {
    
-   await axios.get('http://localhost:5000/api/avengers/' + this.props.match.params.id)
+   await axios.get('http://localhost:5000/api/products/' + this.props.match.params.id)
       .then(res => {
         this.setState({
           name: res.data.name,
-          deceased: res.data.deceased,
-          likeCount: res.data.likeCount,
-          birthName: res.data.birthName,
+          isAvailable: res.data.isAvailable,
+          price: res.data.price,
+          description: res.data.description,
           imgUrl: res.data.imgUrl,
-          movies:res.data.movies,
+          category:res.data.category,
 
           
         
@@ -85,8 +85,8 @@ export default class AvengerDetail extends Component {
       
       userId:this.userId,
       name: this.state.name,
-      likeCount: this.state.likeCount,
-      movies: this.state.movies,
+      price: this.state.price,
+      category: this.state.category,
       imgUrl:this.state.imgUrl,
       
     };
@@ -118,9 +118,9 @@ export default class AvengerDetail extends Component {
         <img src={this.state.imgUrl} height="350" className="card-img-top" className="card-img-top" alt="..."/>
         <div className="card-body">
               <h5 className="card-title">{this.state.name}</h5>
-          <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p className="card-text">{this.state.description}</p>
           <ul>
-           {this.state.movies.map((movie, index) => (
+           {this.state.category.map((movie, index) => (
         <li key= {index}>{movie}</li>
         ))}
           </ul>
@@ -130,7 +130,7 @@ export default class AvengerDetail extends Component {
          
    
           >
-              Like <span className="badge bg-dark">{this.state.likeCount}</span>
+              Like <span className="badge bg-dark">{this.state.price}</span>
           </button><br/><br/>{" "}
           <button className="btn btn-warning" onClick={this.onSubmit}>Add to cart</button>
           

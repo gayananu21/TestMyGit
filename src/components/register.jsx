@@ -5,7 +5,7 @@ import axios from 'axios';
 import {Link} from "react-router-dom"
 import {decode as base64_decode, encode as base64_encode} from 'base-64'
 
-const errStyle = { color:'red',  fontSize: 14};
+
 
 export default class Register extends Component {
 
@@ -13,21 +13,21 @@ export default class Register extends Component {
     super(props)
 
     this.onChangeAvengerName = this.onChangeAvengerName.bind(this);
-    this.onChangeAvengerBirthName = this.onChangeAvengerBirthName.bind(this);
-    this.onChangeAvengerLikeCount = this.onChangeAvengerLikeCount.bind(this);
-    this.onChangeAvengerMovies = this.onChangeAvengerMovies.bind(this);
-    this.onChangeAvengerDeceased = this.onChangeAvengerDeceased.bind(this);
-    this.onChangeAvengerImgUrl = this.onChangeAvengerImgUrl.bind(this);
+    this.onChangeProductDescription = this.onChangeProductDescription.bind(this);
+    this.onChangeProductPrice = this.onChangeProductPrice.bind(this);
+    this.onChangeProductCategory = this.onChangeProductCategory.bind(this);
+    this.onChangeProductIsAvailable = this.onChangeProductIsAvailable.bind(this);
+    this.onChangeProductImgUrl = this.onChangeProductImgUrl.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
      // State
      this.state = {
         name: '',
-        birthName: '',
-        likeCount: '',
+        description: '',
+        price: '',
         imgUrl: '',
-        deceased:'',
-        movies:[],
+        isAvailable:'',
+        category:[],
         errormessage: ''
        
   
@@ -96,79 +96,48 @@ export default class Register extends Component {
 
   onChangeAvengerName(e) {
     
-    let val = e.target.value;
-    let err = '';
+    
    
-      if (!val) {
-        err = <p style={errStyle}>Avenger name can' be empty</p>;
-      
-    }
-    else if (val.length<3) {
-        err = <p style={errStyle}>Please enter a valid name</p>;
-      
-    }
-    else if (val.length>15) {
-        err = <p style={errStyle}>Please enter a valid name</p>;
-      
-    }
-    else if (Number(val)) {
-        err = <p style={errStyle}>Avenger name should be string</p>;
-      
-    }
-    this.setState({errormessage: err});
     this.setState({ name: e.target.value })
     
   }
 
-  onChangeAvengerBirthName(e) {
-    this.setState({ birthName: e.target.value })
+  onChangeProductDescription(e) {
+    this.setState({ description: e.target.value })
   }
 
-  onChangeAvengerLikeCount(e) {
-    this.setState({ likeCount: e.target.value })
+  onChangeProductPrice(e) {
+    this.setState({ price: e.target.value })
   }
 
-  onChangeAvengerMovies(e) {
-    this.setState({ movies: e.target.value })
+  onChangeProductCategory(e) {
+    this.setState({ category: e.target.value })
   }
 
-  onChangeAvengerDeceased(e) {
-    this.setState({ deceased: e.target.value })
+  onChangeProductIsAvailable(e) {
+    this.setState({ isAvailable: e.target.value })
   }
 
-  onChangeAvengerImgUrl(e) {
+  onChangeProductImgUrl(e) {
     this.setState({ imgUrl: e.target.value })
   }
 
   onSubmit(e) {
     e.preventDefault();
-    let name = this.state.name;
-    if (!(name)) {
-      alert("Avenger name can't be empty");
-    }
-    else if(name.length<3){
-        alert("Please enter valid name");
-    }
-    else if(name.length>15){
-        alert("Please enter valid name");
-    }
-    else if(Number(name)){
-        alert("Avenger name should be a String");
-    }
-    else{
+    
          const avengerObject = {
       name: this.state.name,
-      birthName: this.state.birthName,
-      likeCount: this.state.likeCount,
-      movies: this.state.movies,
-      deceased: this.state.deceased,
+      description: this.state.description,
+      price: this.state.price,
+      category: this.state.category,
+      isAvailable: this.state.isAvailable,
       imgUrl: this.state.imgUrl
     };
 
     
 
     let token =localStorage.getItem('login')
-    axios.post('http://localhost:5000/api/avengers/', avengerObject,{
+    axios.post('http://localhost:5000/api/products/', avengerObject,{
       headers:{
         "token":token
       }
@@ -178,11 +147,11 @@ export default class Register extends Component {
         console.log(token)
         console.log('Student successfully updated')
             // Redirect to Student List 
-            this.props.history.push('/Avengers')
+            this.props.history.push('/products')
       }).catch((error) => {
         console.log(error)
       })
-    }
+    
     
 
    
@@ -199,42 +168,42 @@ export default class Register extends Component {
     return (
         
         
-    <div onSubmit={this.mySubmitHandler} className="form-wrapper">
-       <br/> <h3>Add Your New Avenger Here</h3><br/><br/>
+    <div onSubmit={this.mySubmitHandler} className="form-wrapper"><br/><br/>
+       <br/> <h3 className="text-center">Add Your New Product Here</h3><br/><br/>
       <form  onSubmit={this.onSubmit}>
         <Form.Group  controlId="Name">
-          <Form.Label>Name</Form.Label>
+         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <Form.Label class="text-secondary">Name</Form.Label>
           <Form.Control type="text" autoComplete="off"  value={this.state.name} onChange={this.onChangeAvengerName} />
           {this.state.errormessage}
-        </Form.Group>
+        </Form.Group><br/>
 
-        <Form.Group controlId="BirthName">
-          <Form.Label>BirthName</Form.Label>
-          <Form.Control type="text" autoComplete="off" value={this.state.birthName} onChange={this.onChangeAvengerBirthName} />
-        </Form.Group>
+        <Form.Group controlId="description">
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  <Form.Label class="text-secondary"> Description</Form.Label>
+          <Form.Control type="text" autoComplete="off" value={this.state.description} onChange={this.onChangeProductDescription} />
+        </Form.Group><br/>
 
-        <Form.Group controlId="LikeCount">
-          <Form.Label>LikeCount </Form.Label>
-          <Form.Control type="text" autoComplete="off" value={this.state.likeCount} onChange={this.onChangeAvengerLikeCount} />
-        </Form.Group>
+        <Form.Group controlId="price">
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  <Form.Label class="text-secondary">Price </Form.Label>
+         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <Form.Control type="text" autoComplete="off" value={this.state.price} onChange={this.onChangeProductPrice} />
+        </Form.Group><br/>
 
-        <Form.Group controlId="Movies">
-          <Form.Label>Movies</Form.Label>
-          <Form.Control type="text"  autoComplete="off" value={this.state.movies} onChange={this.onChangeAvengerMovies} />
-        </Form.Group>
+        <Form.Group controlId="category">
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  <Form.Label class="text-secondary">Category</Form.Label>
+          <Form.Control type="text"  autoComplete="off" value={this.state.category} onChange={this.onChangeProductCategory} />
+        </Form.Group><br/>
 
-        <Form.Group controlId="Deceased">
-          <Form.Label>Deceased</Form.Label>
-          <Form.Control type="text"  autoComplete="off" value={this.state.deceased} onChange={this.onChangeAvengerDeceased} />
-        </Form.Group>
+        <Form.Group controlId="isAvailable">
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  <Form.Label class="text-secondary">Availability Status</Form.Label>
+          <Form.Control type="text"  autoComplete="off" value={this.state.isAvailable} onChange={this.onChangeProductIsAvailable} />
+        </Form.Group><br/>
 
         <Form.Group controlId="ImgUrl">
-          <Form.Label>ImgUrl</Form.Label>
-          <Form.Control type="text" autoComplete="off" value={this.state.imgUrl} onChange={this.onChangeAvengerImgUrl} />
-        </Form.Group>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  <Form.Label class="text-secondary">ImgUrl</Form.Label>
+          <Form.Control type="text" autoComplete="off" value={this.state.imgUrl} onChange={this.onChangeProductImgUrl} />
+        </Form.Group><br/>
 
-        <Button variant="btn btn-outline-success" size="lg" block="block" type="cancel">
-          Add New Avenger
+       <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <Button variant="btn btn-outline-success" size="lg" block="block" type="cancel">
+          Add New Product
         </Button><br/><br/>
         <Link to={"/Avengers"}> <Button variant="btn btn-outline-dark" size="lg" block="block" type="submit"> 
           Cancel

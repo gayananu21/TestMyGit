@@ -15,9 +15,9 @@ class NavBar extends Component {
         return(
         <div>
 
-<nav className="navbar navbar-expand-lg  navbar-dark bg-dark">
+<nav className="navbar fixed-top navbar-expand-lg  navbar-dark bg-dark" >
 
-  <Link to="Avengers" className="navbar-brand">Avengers</Link>
+  <Link to="Products" className="navbar-brand">ECARE</Link>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
   </button>
@@ -31,20 +31,10 @@ class NavBar extends Component {
       
       <li className="nav-item">
         
-        <Link to="Register" className="nav-link">Register</Link>
+        <Link to="Register" className="nav-link">Add Product</Link>
       </li>
-      <li className="nav-item dropdown">
-        <a className="nav-link dropdown-toggle" href="s" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a className="dropdown-item" href="s">Action</a>
-          <a className="dropdown-item" href="s">Another action</a>
-          <div className="dropdown-divider"></div>
-          <a className="dropdown-item" href="s">Something else here</a>
-        </div>
-      </li>
-      <Link to="Cart" className="nav-link">Cart</Link>
+      
+      <Link to="Orders" className="nav-link">Orders</Link>
       <li className="nav-item">
         <a className="nav-link disabled" href="s">About us</a>
       </li>

@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import Avenger from "./avenger";
+import Avenger from "./userAvenger";
 import axios from "axios";
 
 
 
 let token =localStorage.getItem('login')
 
-class Avengers extends Component {
+class AvengersUser extends Component {
 
     state = {
 
@@ -153,4 +153,4 @@ class Avengers extends Component {
     }
 }
 
-export default Avengers; 
+export default AvengersUser; 
