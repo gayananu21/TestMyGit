@@ -4,6 +4,10 @@ import {decode as base64_decode, encode as base64_encode} from 'base-64'
 import OrderItems from "./orderItems";
 
 
+
+
+
+
 export default class OrderDetail extends Component {
 
 
@@ -36,7 +40,7 @@ export default class OrderDetail extends Component {
   var noOfItems = 0
    
   
-   const {data} = await axios.get('http://localhost:5000/api/orders/all/' + this.props.match.params.id)
+   const {data} = await axios.get('http://localhost:5000/api/orders/user/' + this.props.match.params.id)
         let products = data.map((product) => {
           sum += product.price
           noOfItems += 1
@@ -64,7 +68,7 @@ export default class OrderDetail extends Component {
            
 
 
-             
+              
                this.setState({ orderStatus: response.data.status})
 
             })
@@ -89,7 +93,8 @@ export default class OrderDetail extends Component {
         
         return (
             <div className="container" > <br/><br/><br/><br/>
-  
+
+<h4 className="text-center" >Order Details</h4>
 <br/><br/><br/><br/>
             
         <p  class="text-black bg-light" >ORDER STATUS   <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> TOTAL AMOUNT  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> NO OF ITEMS</p>

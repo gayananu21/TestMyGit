@@ -87,7 +87,7 @@ class Products extends Component {
         );
     }
     async componentDidMount() {
-        const {data} = await axios.get("http://localhost:5000/api/products");
+        const {data} = await axios.get("http://localhost:5000/api/products/");
         let products = data.map((product) => {
             return{
                 id: product._id,
@@ -102,46 +102,15 @@ class Products extends Component {
         this.setState({ allProducts: products});
 
 
-     
-
-
 
         
-    }
 
-    
+
+    }
 
    
-    async Currency(){
-
-        await axios({
-            method: "GET",
-            url: "https://v6.exchangerate-api.com/v6/b1545c28a1aa27fbdd3d66ad/latest/LKR",
-            
-          })
-           
-         
-            .then((response) => {
-              
-            localStorage.setItem(`exRate`, response.data.conversion_rates.USD)
-
-
-              console.log(response.data.conversion_rates.USD);
-
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-            
-    }
-
-
-    
- 
-
-    
     async deleteProduct(id){
-        await axios.delete(`http://localhost:5000/api/avengers/${id}`,{
+        await axios.delete(`http://localhost:5000/api/products/${id}`,{
 
         headers:{
             "token":token

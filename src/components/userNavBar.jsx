@@ -15,9 +15,9 @@ class UserNavBar extends Component {
         return(
         <div>
 
-<nav className="navbar navbar-expand-lg  navbar-dark bg-dark">
+<nav  className="navbar fixed-top navbar-expand-lg  navbar-dark bg-dark">
 
-  <Link to="Avengers" className="navbar-brand">ECARE</Link>
+  <Link to="products" className="navbar-brand">ECARE</Link>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
   </button>
@@ -27,15 +27,14 @@ class UserNavBar extends Component {
         
    
       
-        <Link to="try" className="nav-link">Home <span className="sr-only">(current)</span></Link>
+        <Link to="home" className="nav-link">Home <span className="sr-only">(current)</span></Link>
       
       
       
       <Link to="Cart" className="nav-link">Cart</Link>
-      <Link to="Cart" className="nav-link">Orders</Link>
-      <li className="nav-item">
-        <a className="nav-link disabled" href="s">About us</a>
-      </li>
+      <Link to="orders" className="nav-link">Orders</Link>
+      <Link to="about" className="nav-link">About Us</Link>
+      
     </ul>
     <form className="form-inline my-2 my-lg-0">
      

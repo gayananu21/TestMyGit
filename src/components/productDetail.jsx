@@ -53,8 +53,9 @@ export default class ProductDetail extends Component {
   render() {
 
     return(
+      <div> <br/><br/><br/>
         <div  className="card"   style={{width: "18rem"}}>
-        <img src={this.state.imgUrl} height="350" className="card-img-top" className="card-img-top" alt="..."/>
+        <img src={this.state.imgUrl} height="350" className="card-img-top"  alt="..."/>
         <div className="card-body">
               <h5 className="card-title">{this.state.name}</h5>
           <p className="card-text">{this.state.description}</p><br></br>
@@ -65,6 +66,8 @@ export default class ProductDetail extends Component {
         
         <p className="card-text">AVAILABILITY:  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>   {String(this.state.isAvailable)}</p>
           
+          </div>
+
           </div>
 </div>
 

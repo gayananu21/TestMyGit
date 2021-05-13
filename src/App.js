@@ -2,15 +2,19 @@ import React, {useState} from "react";
 import ReactDom from "react-dom";
 import { BrowserRouter, Route, Switch} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Avengers from "./components/products";
-import AvengersUser from "./components/userAvengers";
+import Products from "./components/products";
+import ProductsUser from "./components/userProducts";
+import HomeProducts from "./components/homeProducts";
 import NavBar from "./components/navbar"
 import Register from "./components/register";
 import ProductDetail from "./components/productDetail";
-import AvengerEdit from "./components/productEdit";
+import ProductEdit from "./components/productEdit";
 import Login from "./components/login";
 import {ProtectRoute} from "./components/protectRoutes"
 import Carts from "./components/carts"
+import About from "./components/about"
+import UserOrderDetail from "./components/userOrderDetails"
+import UserOrders from "./components/userOrders"
 import OrderDetail from "./components/orderDetails"
 import Orders from "./components/orders"
 import {decode as base64_decode, encode as base64_encode} from 'base-64'
@@ -32,7 +36,7 @@ function App(){
 <NavBar/>
 <Switch>
     
-       <ProtectRoute   exact path="/edit/:id" component={AvengerEdit}></ProtectRoute>
+       <ProtectRoute   exact path="/edit/:id" component={ProductEdit}></ProtectRoute>
        <ProtectRoute   exact path="/Register" component={Register}></ProtectRoute>
        
   
@@ -42,8 +46,8 @@ function App(){
        
         < Route exact path="/login" component={Login}/>
 
-        < Route exact path="/Cart" component={Carts}/>
 
+       
         < Route exact path="/Orders" component={Orders}/>
 
         < Route exact path="/Orders/details/:id" component={OrderDetail}/>
@@ -52,7 +56,7 @@ function App(){
         
         <Route exact path="/detail/:id" component={ProductDetail}/>
        
-        <Route exact path="/Products" component={Avengers}/>
+        <Route exact path="/Products" component={Products}/>
 
       
         <Route path= "" component={() => "404 NOT FOUND"}/>
@@ -77,12 +81,15 @@ function App(){
   
     <Switch>
     
-       <ProtectRoute   exact path="/edit/:id" component={AvengerEdit}></ProtectRoute>
-       <ProtectRoute   exact path="/Register" component={Register}></ProtectRoute>
-       
-  
+      
+    < Route exact path="/about" component={About}/>
 
-   
+       
+       < Route exact path="/orders" component={UserOrders}/>
+
+       < Route exact path="/home" component={HomeProducts}/>
+
+       < Route exact path="/details/user/:id" component={UserOrderDetail}/>
 
        
         < Route exact path="/login" component={Login}/>
@@ -91,9 +98,9 @@ function App(){
 
         
         
-        <Route exact path="/detail/:id" component={ProductDetail}/>
+        <Route exact path="/products/:id" component={ProductDetail}/>
        
-        <Route exact path="/Avengers" component={AvengersUser}/>
+        <Route exact path="/products" component={ProductsUser}/>
 
       
         <Route path= "" component={() => "404 NOT FOUND"}/>
