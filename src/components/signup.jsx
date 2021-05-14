@@ -3,12 +3,11 @@ import React, { Component } from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-
 import {decode as base64_decode, encode as base64_encode} from 'base-64'
 
 
 
-export default class Login extends Component {
+export default class Signup extends Component {
 
   constructor(props) {
     super(props)
@@ -22,7 +21,7 @@ export default class Login extends Component {
      this.state = {
         email: '',
         password: '',
-       
+        userName:''
         
         
       }
@@ -40,6 +39,10 @@ export default class Login extends Component {
     this.setState({ password: e.target.value })
   }
 
+  onChangeUserName(e) {
+    this.setState({ userName: e.target.value })
+  }
+
 
 
   
@@ -52,20 +55,15 @@ export default class Login extends Component {
     
 
     
-         const avengerObject = {
+         const userObject = {
       email: this.state.email,
       password: this.state.password,
+      userName: this.state.userName,
       
     };
 
-   
-
-    
-
-    
-   
-
-   await axios.post('http://localhost:5000/api/auth', avengerObject,{
+ 
+   await axios.post('http://localhost:5000/api/auth', userObject,{
      
     })
       .then((res) => {
@@ -156,7 +154,7 @@ export default class Login extends Component {
         
         
     <div onSubmit={this.mySubmitHandler} className="form-wrapper">
-       <br/> <h3>Welcome To Ecare</h3><br/><br/>
+       <br/> <h3>Add Your New Avenger Here</h3><br/><br/>
       <form  onSubmit={this.onSubmit}>
         <Form.Group  controlId="Name">
           <Form.Label>email</Form.Label>
@@ -166,7 +164,7 @@ export default class Login extends Component {
 
         <Form.Group controlId="BirthName">
           <Form.Label>pass</Form.Label>
-          <Form.Control type="text" autoComplete="off" value={this.state.password} onChange={this.onChangepassword} />
+          <Form.Control type="text" autoComplete="off" value={this.state.birthName} onChange={this.onChangepassword} />
         </Form.Group>
 
        
